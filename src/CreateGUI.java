@@ -26,9 +26,11 @@ public class CreateGUI extends Frame
       info.setLayout(null);
       
       Button saveTeam = new Button("Save Team Information"); info.add(saveTeam); saveTeam.setBounds(5, 350, 160, 35); saveTeam.setFont(new Font("Arial", Font.BOLD, 13));
-      Button display = new Button("Display");
       Button clearTeam  = new Button("Clear Team Information"); info.add(clearTeam); clearTeam.setBounds(5, 400, 160, 35); clearTeam.setFont(new Font("Arial", Font.BOLD, 13));
-      Button quit   = new Button("Quit");
+      Button savePlayer = new Button("Save Player Information"); info.add(savePlayer); savePlayer.setBounds(300, 215, 165, 35); savePlayer.setFont(new Font("Arial", Font.BOLD, 13));
+      Button clearPlayer = new Button("Clear Player Information"); info.add(clearPlayer); clearPlayer.setBounds(300, 265, 165, 35); clearPlayer.setFont(new Font("Arial", Font.BOLD, 13));
+      Button display = new Button("Display Database"); info.add(display); display.setBounds(300, 350, 165, 35); display.setFont(new Font("Arial", Font.BOLD, 13));
+      Button quit   = new Button("Quit"); info.add(quit); quit.setBounds(300, 400, 165, 35); quit.setFont(new Font("Arial", Font.BOLD, 13));
       
       Label	title1 = new Label("Team Information"); title1.setBounds(5,0,250,50); title1.setFont(new Font("Arial", Font.BOLD, 24)); info.add(title1);      
       Label	teamName = new Label("Team Name "); teamName.setBounds(5,50,250,25); teamName.setFont(new Font("Arial", Font.BOLD, 15)); info.add(teamName);
@@ -49,15 +51,13 @@ public class CreateGUI extends Frame
       Label title2 = new Label("Player Information"); title2.setBounds(300,0,250,50); title2.setFont(new Font("Arial", Font.BOLD, 24)); info.add(title2); 
       Label	firstName = new Label("First Name: "); firstName.setBounds(300,50,90,25); firstName.setFont(new Font("Arial", Font.BOLD, 15)); info.add(firstName);
       Label	lastName = new Label("Last Name: "); lastName.setBounds(300,80,90,25); lastName.setFont(new Font("Arial", Font.BOLD, 15)); info.add(lastName);
-      Label	handicap = new Label("Handicap: "); handicap.setBounds(300,110,90,25); handicap.setFont(new Font("Arial", Font.BOLD, 15)); info.add(handicap);
-      Label	lgScore = new Label("Score Last Game: "); lgScore.setBounds(300,140,140,25); lgScore.setFont(new Font("Arial", Font.BOLD, 15)); info.add(lgScore);
-      Label	teamRank = new Label("Rank On Team: "); teamRank.setBounds(300,170,125,25); teamRank.setFont(new Font("Arial", Font.BOLD, 15)); info.add(teamRank);
+      Label	lgScore = new Label("Score Last Game: "); lgScore.setBounds(300,110,140,25); lgScore.setFont(new Font("Arial", Font.BOLD, 15)); info.add(lgScore);
+      Label	teamRank = new Label("Rank On Team: "); teamRank.setBounds(300,140,125,25); teamRank.setFont(new Font("Arial", Font.BOLD, 15)); info.add(teamRank);
       
       final TextField	firstNameTextfield = new TextField(); firstNameTextfield.setBounds(450,50,100,23); info.add(firstNameTextfield);
       final TextField	lastNameTextfield = new TextField(); lastNameTextfield.setBounds(450,80,100,23); info.add(lastNameTextfield);
-      final TextField	handicapTextfield = new TextField(); handicapTextfield.setBounds(450,110,50,23); info.add(handicapTextfield);
-      final TextField	scoreTextfield = new TextField(); scoreTextfield.setBounds(450,140,50,23); info.add(scoreTextfield);
-      final TextField	rankTextfield = new TextField(); rankTextfield.setBounds(450,170,50,23); info.add(rankTextfield);   
+      final TextField	scoreTextfield = new TextField(); scoreTextfield.setBounds(450,110,50,23); info.add(scoreTextfield);
+      final TextField	rankTextfield = new TextField(); rankTextfield.setBounds(450,140,50,23); info.add(rankTextfield);   
 
       setLayout(new BorderLayout());       // methods of the frame   
       add(info);
@@ -70,13 +70,19 @@ public class CreateGUI extends Frame
       
       display.addActionListener(new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent display) {
+        	  DisplayDB displayDB = new DisplayDB("Choose Which Database To Display");
           }
       });
       
       clearTeam.addActionListener(new java.awt.event.ActionListener() {
-          public void actionPerformed(java.awt.event.ActionEvent clear) {
+          public void actionPerformed(java.awt.event.ActionEvent clearTeam) {
         	  teamTextfield.setText(""); player1Textfield.setText(""); player2Textfield.setText(""); player3Textfield.setText(""); player4Textfield.setText(""); 
         	  teamSRTextfield.setText("");
+          }
+      });
+      clearPlayer.addActionListener(new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent clearPlayer) {
+        	  firstNameTextfield.setText(""); lastNameTextfield.setText(""); scoreTextfield.setText(""); rankTextfield.setText(""); 
           }
       });
       
