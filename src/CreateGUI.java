@@ -13,7 +13,6 @@ public class CreateGUI extends Frame
     public CreateGUI(String app) {
     	super(app);
     	setup();
-    	show(); //Shows GUI
     }
     
    private void setup() {
@@ -21,6 +20,7 @@ public class CreateGUI extends Frame
 	  setSize(600, 500);
 	  setLocationRelativeTo(null);
 	  setBackground(Color.GREEN);
+	  setVisible(true);
 
       Panel info    = new Panel();   // panel for the text and labels
       info.setLayout(null);
