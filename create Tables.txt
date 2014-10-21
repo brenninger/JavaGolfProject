@@ -14,11 +14,12 @@ CREATE TABLE `playerrank` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `score` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `playerID` int(11) NOT NULL,
   `strokes` int(11) NOT NULL,
   `par` int(11) NOT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  PRIMARY KEY('ID')
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `team` (
