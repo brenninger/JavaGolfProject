@@ -1,34 +1,31 @@
-// Josh Haugen CSC 3610 Student Information Application
-// 9-9-14
-// Creates GUI to enter student info to mySQL database
-
 import java.awt.*;
 
 import javax.swing.*;
+
 import java.awt.event.*;
 import java.sql.*;
 
 public class CreateGUI extends Frame
 {
     public CreateGUI(String app) {
-    	super(app);
+    	super("Golf");
     	setup();
-    	show(); //Shows GUI
     }
     
    private void setup() {
 
-	  setSize(600, 500);
+	  setSize(600, 546);
 	  setLocationRelativeTo(null);
 	  setBackground(Color.GREEN);
+	  setVisible(true);
 
       Panel info    = new Panel();   // panel for the text and labels
       info.setLayout(null);
       
       Button saveTeam = new Button("Save Team Information"); info.add(saveTeam); saveTeam.setBounds(5, 350, 160, 35); saveTeam.setFont(new Font("Arial", Font.BOLD, 13));
       Button clearTeam  = new Button("Clear Team Information"); info.add(clearTeam); clearTeam.setBounds(5, 400, 160, 35); clearTeam.setFont(new Font("Arial", Font.BOLD, 13));
-      Button savePlayer = new Button("Save Player Information"); info.add(savePlayer); savePlayer.setBounds(300, 215, 165, 35); savePlayer.setFont(new Font("Arial", Font.BOLD, 13));
-      Button clearPlayer = new Button("Clear Player Information"); info.add(clearPlayer); clearPlayer.setBounds(300, 265, 165, 35); clearPlayer.setFont(new Font("Arial", Font.BOLD, 13));
+      Button savePlayer = new Button("Save Player Information"); info.add(savePlayer); savePlayer.setBounds(357, 190, 165, 35); savePlayer.setFont(new Font("Arial", Font.BOLD, 13));
+      Button clearPlayer = new Button("Clear Player Information"); info.add(clearPlayer); clearPlayer.setBounds(357, 236, 165, 35); clearPlayer.setFont(new Font("Arial", Font.BOLD, 13));
       Button display = new Button("Display Database"); info.add(display); display.setBounds(300, 350, 165, 35); display.setFont(new Font("Arial", Font.BOLD, 13));
       Button quit   = new Button("Quit"); info.add(quit); quit.setBounds(300, 400, 165, 35); quit.setFont(new Font("Arial", Font.BOLD, 13));
       
@@ -61,6 +58,7 @@ public class CreateGUI extends Frame
 
       setLayout(new BorderLayout());       // methods of the frame   
       add(info);
+      
       
       saveTeam.addActionListener(new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent saveTeam) {
