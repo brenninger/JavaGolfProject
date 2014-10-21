@@ -44,7 +44,11 @@ private void setup() {
 		      });
 		    displayPlayer.addActionListener(new java.awt.event.ActionListener() {
 		          public void actionPerformed(java.awt.event.ActionEvent displayPlayer) {
+<<<<<<< HEAD
 		        	  showTableDataP();
+=======
+		        	  showTableData();
+>>>>>>> origin/master
 		          }
 		      });
 		    
@@ -54,6 +58,7 @@ private void setup() {
 		         }
 		      }); 
 		   }  
+<<<<<<< HEAD
    public void showTableDataP()
    {
 	   String playerId;
@@ -121,6 +126,8 @@ private void setup() {
 	   		}
    }
    
+=======
+>>>>>>> origin/master
    public void showTableData()
    { 
 	   String teamName;
@@ -166,6 +173,12 @@ private void setup() {
 			
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CSC3610_Connection","localhost", "");
 			
+<<<<<<< HEAD
+=======
+			if(!con.isClosed())
+				System.out.println("CSC3610 Class, you have successfully connected to " +
+						"MySql Server using a Java Application");
+>>>>>>> origin/master
 			
 			//Test database
 			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM csc3610_connection.test");
