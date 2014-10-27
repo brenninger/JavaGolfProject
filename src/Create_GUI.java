@@ -60,10 +60,9 @@ public class Create_GUI {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	/**Initialize the contents of the frame.*/
 	private void initialize() {
+		//Create team / player GUI
 		frmGolfCreate = new JFrame();
 		frmGolfCreate.setTitle("Golf - Create Team / Player");
 		frmGolfCreate.setBounds(100, 100, 385, 379);
@@ -126,7 +125,6 @@ public class Create_GUI {
 				player3 = Integer.parseInt(txtP3.getText());
 				player4 = Integer.parseInt(txtP4.getText());
 				
-			
 					try {
 						teamSubmit();
 					} catch (SQLException e1) {

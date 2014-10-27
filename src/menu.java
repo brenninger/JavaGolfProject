@@ -4,26 +4,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
-//import javax.swing.JOptionPane;
-//import javax.swing.JScrollPane;
-//import javax.swing.JTable;
-//import javax.swing.table.DefaultTableModel;
 
 public class menu{
 
 	private JFrame frmGolfMain;
 	static Connection con = null;
 
-	/**
-	 * Launch the application.
-	 */
+	/**Launch the application.*/
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

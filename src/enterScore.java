@@ -25,15 +25,18 @@ public class enterScore {
 	JFrame frmGolfScore;
 	private JTextField txtID;
 	private JTextField txtStrokes;
-	private JTextField txtPar;
+	
 	private JButton btnSubmit;
 	private JButton btnClear;
 	private JButton btnClose;
+	private JTextField txtRate;
+	private JTextField txtSlope;
 	static Connection con = null;
 //	private static Statement statement;
 	private static int playerID;
 	private static int strokes;
-	private static int par;
+	private static double courseRate;
+	private static int slope;
 
 	/**Launch the application.*/
 	public static void main(String[] args) {
@@ -58,7 +61,7 @@ public class enterScore {
 	private void initialize() {
 		frmGolfScore = new JFrame();
 		frmGolfScore.setTitle("Golf - Score");
-		frmGolfScore.setBounds(100, 100, 234, 234);
+		frmGolfScore.setBounds(100, 100, 234, 262);
 		frmGolfScore.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmGolfScore.getContentPane().setLayout(null);
 		
@@ -76,9 +79,9 @@ public class enterScore {
 		lblStrokes.setBounds(51, 70, 48, 22);
 		frmGolfScore.getContentPane().add(lblStrokes);
 		
-		JLabel lblCoursePar = new JLabel("Course Par:");
-		lblCoursePar.setBounds(31, 98, 82, 22);
-		frmGolfScore.getContentPane().add(lblCoursePar);
+		JLabel lblCourseRating = new JLabel("Course Rating:");
+		lblCourseRating.setBounds(17, 98, 83, 22);
+		frmGolfScore.getContentPane().add(lblCourseRating);
 		
 		//playerID text field
 		txtID = new JTextField();
@@ -92,12 +95,6 @@ public class enterScore {
 		frmGolfScore.getContentPane().add(txtStrokes);
 		txtStrokes.setColumns(10);
 		
-		//course par text field
-		txtPar = new JTextField();
-		txtPar.setBounds(106, 98, 65, 22);
-		frmGolfScore.getContentPane().add(txtPar);
-		txtPar.setColumns(10);
-		
 		//submit the score to the database
 		btnSubmit = new JButton("Submit");
 		btnSubmit.addMouseListener(new MouseAdapter() {
@@ -105,16 +102,16 @@ public class enterScore {
 			public void mouseClicked(MouseEvent e) {
 				playerID = Integer.parseInt(txtID.getText());
 				strokes = Integer.parseInt(txtStrokes.getText());
-				par = Integer.parseInt(txtPar.getText());
-				
+				courseRate = Double.parseDouble(txtRate.getText());
+				slope = Integer.parseInt(txtSlope.getText());
 				insert();
 			}
 		});
-		btnSubmit.setBounds(10, 131, 89, 23);
+		btnSubmit.setBounds(10, 153, 89, 23);
 		frmGolfScore.getContentPane().add(btnSubmit);
 		
 		btnClear = new JButton("Clear");
-		btnClear.setBounds(114, 131, 89, 23);
+		btnClear.setBounds(114, 153, 89, 23);
 		frmGolfScore.getContentPane().add(btnClear);
 		
 		btnClose = new JButton("Close");
@@ -126,8 +123,22 @@ public class enterScore {
 				frmGolfScore.setVisible(false);
 			}
 		});
-		btnClose.setBounds(64, 165, 89, 23);
+		btnClose.setBounds(64, 187, 89, 23);
 		frmGolfScore.getContentPane().add(btnClose);
+		
+		txtRate = new JTextField();
+		txtRate.setBounds(106, 99, 65, 20);
+		frmGolfScore.getContentPane().add(txtRate);
+		txtRate.setColumns(10);
+		
+		JLabel lblSlope = new JLabel("Slope:");
+		lblSlope.setBounds(64, 128, 46, 14);
+		frmGolfScore.getContentPane().add(lblSlope);
+		
+		txtSlope = new JTextField();
+		txtSlope.setBounds(106, 125, 65, 20);
+		frmGolfScore.getContentPane().add(txtSlope);
+		txtSlope.setColumns(10);
 	}
 	
 	public void insert(){
@@ -142,8 +153,8 @@ public class enterScore {
 			}else{
 //				System.out.println(query.next());
 //				System.out.println("not empty");
-				String insert = "INSERT into `score` (`playerID`, `strokes`, `par`) VALUES(" + playerID + ", " +
-						strokes + ", " + par + ");";
+				String insert = "INSERT into `score` (`playerID`, `strokes`, `courseRate`, `slope`) VALUES(" + playerID + ", " +
+						strokes + ", " + courseRate + ", " + slope + ");";
 				db.getStatement().executeUpdate(insert);
 			}
 		} catch (ClassNotFoundException | InstantiationException

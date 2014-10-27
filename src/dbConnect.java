@@ -17,6 +17,9 @@ public class dbConnect {
 	public Statement getStatement(){
 		return statement;
 	}
+//	void setStatement(Statement newStatement){
+//		statement = newStatement;
+//	}
 	void dbConnection() throws ClassNotFoundException, SQLException,
 			InstantiationException, IllegalAccessException {
 		// Connection con = null;

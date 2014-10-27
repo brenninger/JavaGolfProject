@@ -1,12 +1,12 @@
 
 public abstract class team {
-	Integer teamID;
+	int teamID;
 	String teamName;
-	Integer player1;
-	Integer player2;
-	Integer player3;
-	Integer player4;
-	Integer tRank;
+	int player1;
+	int player2;
+	int player3;
+	int player4;
+	int tRank;
 	
 	public team() {
 		// TODO Auto-generated constructor stub
@@ -14,11 +14,11 @@ public abstract class team {
 	
 	public abstract void tRank();
 
-	public Integer getTeamID(){
+	public int getTeamID(){
 		return teamID;
 	}
 	
-	void setTeamID(Integer newTeamID){
+	void setTeamID(int newTeamID){
 		teamID = newTeamID;
 	}
 	
@@ -30,43 +30,43 @@ public abstract class team {
 		teamName = newTeamName;
 	}
 	
-	public Integer getPlayer1(){
+	public int getPlayer1(){
 		return player1;
 	}
 	
-	void setPlayer1(Integer newPlayer1){
+	void setPlayer1(int newPlayer1){
 		player1 = newPlayer1;
 	}
 	
-	public Integer getPlayer2(){
+	public int getPlayer2(){
 		return player2;
 	}
 	
-	void setPlayer2(Integer newPlayer2){
+	void setPlayer2(int newPlayer2){
 		player2 = newPlayer2;
 	}
 	
-	public Integer getPlayer3(){
+	public int getPlayer3(){
 		return player3;
 	}
 	
-	void setPlayer3(Integer  newPlayer3){
+	void setPlayer3(int newPlayer3){
 		player3 = newPlayer3;
 	}
 	
-	public Integer getPlayer4(){
+	public int getPlayer4(){
 		return player4;
 	}
 	
-	void setPlayer4(Integer newPlayer4){
+	void setPlayer4(int newPlayer4){
 		player4 = newPlayer4;
 	}
 	
-	public Integer getTRank(){
+	public int getTRank(){
 		return tRank;
 	}
 	
-	void setRank(Integer newTRank){
+	void setRank(int newTRank){
 		tRank = newTRank;
 	}
 	
