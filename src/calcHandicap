@@ -1,0 +1,43 @@
+import java.text.DecimalFormat;
+
+
+public class calcHandicap {
+	double score;
+	int numOfScores;
+	int strokes;
+	double differential;
+	final double COURSERATING = 73.1;
+	final int SLOPE = 138;
+	double sumOfDiff;
+	DecimalFormat df = new DecimalFormat("#.##");
+	
+	public calcHandicap()
+	{
+		score = 0;
+		strokes = 0;
+		numOfScores = 0;
+		calculations();
+	}
+	public calcHandicap(int s)
+	{
+		strokes = s;
+		calculations();
+	}
+	public calcHandicap(int s, int n)
+	{
+		strokes = n;
+		numOfScores = s;
+		calculations();
+	}
+
+	public double calculations()
+	{
+		differential = ((strokes - COURSERATING) * 113) / SLOPE;
+		return differential;
+	}
+	public String toString()
+	{
+		return "Your differential is " + df.format(differential);
+	}
+	
+}
