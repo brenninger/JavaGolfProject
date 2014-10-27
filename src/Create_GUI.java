@@ -12,6 +12,7 @@ import java.sql.Statement;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -20,13 +21,13 @@ import javax.swing.SwingConstants;
 public class Create_GUI {
 
 	JFrame frmGolfCreate;
+	private JTextField txtTName;
+	private JTextField txtFName;
+	private JTextField txtLName;
 	private JTextField txtP2;
 	private JTextField txtP1;
 	private JTextField txtP3;
 	private JTextField txtP4;
-	private JTextField txtTName;
-	private JTextField txtFName;
-	private JTextField txtLName;
 	Connection con = null;
 	private static Statement statement;
 	private static String teamName;
@@ -66,7 +67,7 @@ public class Create_GUI {
 		frmGolfCreate = new JFrame();
 		frmGolfCreate.setTitle("Golf - Create Team / Player");
 		frmGolfCreate.setBounds(100, 100, 385, 379);
-		frmGolfCreate.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmGolfCreate.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmGolfCreate.getContentPane().setLayout(null);
 		
 		JLabel Team = new JLabel("Create Team");
@@ -87,49 +88,26 @@ public class Create_GUI {
 		frmGolfCreate.getContentPane().add(lblTeamName);
 		
 		JLabel lblNewLabel_1 = new JLabel("Player Numbers");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(238, 50, 113, 29);
+		lblNewLabel_1.setBounds(238, 50, 107, 29);
 		frmGolfCreate.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblPlayer = new JLabel("Player 1:");
-		lblPlayer.setBounds(230, 77, 50, 23);
+		lblPlayer.setBounds(238, 77, 50, 23);
 		frmGolfCreate.getContentPane().add(lblPlayer);
 		
 		JLabel lblPlayer_1 = new JLabel("Player 2:");
-		lblPlayer_1.setBounds(230, 101, 50, 23);
+		lblPlayer_1.setBounds(238, 101, 50, 23);
 		frmGolfCreate.getContentPane().add(lblPlayer_1);
 		
 		JLabel lblPlayer_2 = new JLabel("Player 3:");
-		lblPlayer_2.setBounds(230, 127, 50, 23);
+		lblPlayer_2.setBounds(238, 127, 50, 23);
 		frmGolfCreate.getContentPane().add(lblPlayer_2);
 		
 		JLabel lblPlayer_3 = new JLabel("Player 4:");
-		lblPlayer_3.setBounds(230, 151, 50, 23);
+		lblPlayer_3.setBounds(238, 151, 50, 23);
 		frmGolfCreate.getContentPane().add(lblPlayer_3);
-		
-		//player1 text field
-		txtP1 = new JTextField();
-		txtP1.setBounds(283, 78, 62, 20);
-		frmGolfCreate.getContentPane().add(txtP1);
-		txtP1.setColumns(10);
-		
-		//player2 text field
-		txtP2 = new JTextField();
-		txtP2.setBounds(283, 102, 62, 20);
-		frmGolfCreate.getContentPane().add(txtP2);
-		txtP2.setColumns(10);
-		
-		//player3 text field
-		txtP3 = new JTextField();
-		txtP3.setBounds(283, 128, 62, 20);
-		frmGolfCreate.getContentPane().add(txtP3);
-		txtP3.setColumns(10);
-		
-		//player4 text field
-		txtP4 = new JTextField();
-		txtP4.setBounds(283, 152, 62, 20);
-		frmGolfCreate.getContentPane().add(txtP4);
-		txtP4.setColumns(10);
 		
 		//team name text field
 		txtTName = new JTextField();
@@ -203,6 +181,30 @@ public class Create_GUI {
 		separator.setBounds(12, 185, 348, 2);
 		frmGolfCreate.getContentPane().add(separator);
 		
+		//player1 text field
+		txtP1 = new JTextField();
+		txtP1.setBounds(295, 78, 50, 20);
+		frmGolfCreate.getContentPane().add(txtP1);
+		txtP1.setColumns(10);
+		
+		//player2 text field
+		txtP2 = new JTextField();
+		txtP2.setBounds(295, 102, 50, 20);
+		frmGolfCreate.getContentPane().add(txtP2);
+		txtP2.setColumns(10);
+		
+		//player3 text field
+		txtP3 = new JTextField();
+		txtP3.setBounds(295, 128, 50, 20);
+		frmGolfCreate.getContentPane().add(txtP3);
+		txtP3.setColumns(10);
+		
+		//player4 text field
+		txtP4 = new JTextField();
+		txtP4.setBounds(295, 152, 50, 20);
+		frmGolfCreate.getContentPane().add(txtP4);
+		txtP4.setColumns(10);
+		
 		//clear the player text fields
 		JButton playerClear = new JButton("Clear");
 		playerClear.addMouseListener(new MouseAdapter() {
@@ -242,27 +244,35 @@ public class Create_GUI {
 		btnClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
+//				System.exit(0);
+//				frmGolfCreate.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				frmGolfCreate.setVisible(false);
 			}
 		});
 		btnClose.setBounds(249, 293, 89, 23);
 		frmGolfCreate.getContentPane().add(btnClose);
+		
+		
 	}
 	
 	public static void teamSubmit() throws SQLException{
-//		ResultSet p1 = statement.executeQuery("SELECT `playerID`, `FName`, `LName`, `handicap` FROM `player` WHERE `player` = " +
-//				player1 + ";");
-//		
-//		ResultSet p2 = statement.executeQuery("SELECT `playerID`, `FName`, `LName`, `handicap` FROM `player` WHERE `player` = " +
-//				player2 + ";");
-//		
-//		ResultSet p3 = statement.executeQuery("SELECT `playerID`, `FName`, `LName`, `handicap` FROM `player` WHERE `player` = " +
-//				player3 + ";");
-//		
-//		ResultSet p4 = statement.executeQuery("SELECT `playerID`, `FName`, `LName`, `handicap` FROM `player` WHERE `player` = " +
-//				player4 + ";");
+		ResultSet p1 = statement.executeQuery("SELECT `playerID`, `FName`, `LName`, `handicap` FROM `player` WHERE `player` = " +
+				player1 + ";");
 		
+		ResultSet p2 = statement.executeQuery("SELECT `playerID`, `FName`, `LName`, `handicap` FROM `player` WHERE `player` = " +
+				player2 + ";");
 		
+		ResultSet p3 = statement.executeQuery("SELECT `playerID`, `FName`, `LName`, `handicap` FROM `player` WHERE `player` = " +
+				player3 + ";");
+		
+		ResultSet p4 = statement.executeQuery("SELECT `playerID`, `FName`, `LName`, `handicap` FROM `player` WHERE `player` = " +
+				player4 + ";");
+		
+		if (p1.next() && p2.next() && p3.next() && p4.next() == true){
+			
+		}else if(p1.next() == false){
+			JOptionPane.showMessageDialog(frame, "Player ID doesn't exist!");
+		}
 		String query = "INSERT INTO `team`(`teamName`, `player1`, `player2`, `player3`, `player4`) VALUES ('" +
 				teamName + "', " + player1 + ", " + player2 + ", " + player3 + ", " + player4 + ");";
 		statement.executeUpdate(query);

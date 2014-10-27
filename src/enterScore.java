@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -5,12 +6,18 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+//import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+//import java.sql.Statement;
 
 
 public class enterScore {
@@ -22,10 +29,13 @@ public class enterScore {
 	private JButton btnSubmit;
 	private JButton btnClear;
 	private JButton btnClose;
+	static Connection con = null;
+//	private static Statement statement;
+	private static int playerID;
+	private static int strokes;
+	private static int par;
 
-	/**
-	 * Launch the application.
-	 */
+	/**Launch the application.*/
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -39,21 +49,17 @@ public class enterScore {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+	/**Create the application.*/
 	public enterScore() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	/**Initialize the contents of the frame.*/
 	private void initialize() {
 		frmGolfScore = new JFrame();
 		frmGolfScore.setTitle("Golf - Score");
 		frmGolfScore.setBounds(100, 100, 234, 234);
-		frmGolfScore.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmGolfScore.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmGolfScore.getContentPane().setLayout(null);
 		
 		JLabel lblEnterPlayerScore = new JLabel("Enter Player Score");
@@ -92,11 +98,16 @@ public class enterScore {
 		frmGolfScore.getContentPane().add(txtPar);
 		txtPar.setColumns(10);
 		
+		//submit the score to the database
 		btnSubmit = new JButton("Submit");
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				playerID = Integer.parseInt(txtID.getText());
+				strokes = Integer.parseInt(txtStrokes.getText());
+				par = Integer.parseInt(txtPar.getText());
 				
+				insert();
 			}
 		});
 		btnSubmit.setBounds(10, 131, 89, 23);
@@ -110,10 +121,37 @@ public class enterScore {
 		btnClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
+//				System.exit(0);
+//				frmGolfScore.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				frmGolfScore.setVisible(false);
 			}
 		});
 		btnClose.setBounds(64, 165, 89, 23);
 		frmGolfScore.getContentPane().add(btnClose);
+	}
+	
+	public void insert(){
+		dbConnect db = new dbConnect();
+		try {
+			db.dbConnection();
+			ResultSet query = db.getStatement().executeQuery("SELECT `playerID` FROM `player` WHERE `playerID`=" + playerID + ";");
+			if (!query.next()){
+				System.out.println("empty");
+				Component frame = null;
+				JOptionPane.showMessageDialog(frame, "Player ID doesn't exist!");
+			}else{
+//				System.out.println(query.next());
+//				System.out.println("not empty");
+				String insert = "INSERT into `score` (`playerID`, `strokes`, `par`) VALUES(" + playerID + ", " +
+						strokes + ", " + par + ");";
+				db.getStatement().executeUpdate(insert);
+			}
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 }
