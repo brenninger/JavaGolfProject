@@ -12,7 +12,7 @@ public abstract class team {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public abstract void tRank();
+//	public abstract void tRank();
 
 	public int getTeamID(){
 		return teamID;

@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
+//import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,23 +20,18 @@ import javax.swing.SwingConstants;
 public class Create_GUI {
 
 	JFrame frmGolfCreate;
-	private JTextField txtTName;
+	private static JTextField txtTName;
 	private JTextField txtFName;
 	private JTextField txtLName;
-	private JTextField txtP2;
-	private JTextField txtP1;
-	private JTextField txtP3;
-	private JTextField txtP4;
-	Connection con = null;
-	private static String teamName;
-	private static Integer player1;
-	private static Integer player2;
-	private static Integer player3;
-	private static Integer player4;
-	private static String fName;
-	private static String lName;
+	private static JTextField txtP2;
+	private static JTextField txtP1;
+	private static JTextField txtP3;
+	private static JTextField txtP4;
+//	Connection con = null;
 	static Component frame = null;
-	static dbConnect db = new dbConnect();
+//	static dbConnect db = new dbConnect();
+//	static team newTeam = new team(){};
+	static player newPlayer = new player(){};
 	/**
 	 * Launch the application.
 	 */
@@ -119,15 +114,18 @@ public class Create_GUI {
 		teamSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				teamName = txtTName.getText();
-				player1 = Integer.parseInt(txtP1.getText());
-				player2 = Integer.parseInt(txtP2.getText());
-				player3 = Integer.parseInt(txtP3.getText());
-				player4 = Integer.parseInt(txtP4.getText());
+				
+//				newTeam.setTeamName(txtTName.getText());
+//				newTeam.setPlayer1(Integer.parseInt(txtP1.getText()));
+//				newTeam.setPlayer2(Integer.parseInt(txtP2.getText()));
+//				newTeam.setPlayer3(Integer.parseInt(txtP3.getText()));
+//				newTeam.setPlayer4(Integer.parseInt(txtP4.getText()));
+//				System.out.println();
+//				System.out.println(newTeam.getPlayer1());
 				
 					try {
 						teamSubmit();
-					} catch (SQLException e1) {
+					} catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
@@ -221,14 +219,14 @@ public class Create_GUI {
 		playerSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				fName = txtFName.getText();
-				lName = txtLName.getText();
+				newPlayer.setFName(txtFName.getText());
+				newPlayer.setLName(txtLName.getText());
 				
 				
 //					dbConnection();
 					try {
 						playerSubmit();
-					} catch (SQLException e1) {
+					} catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
@@ -254,41 +252,57 @@ public class Create_GUI {
 		
 	}
 	
-	public static void teamSubmit() throws SQLException{
-//		dbConnect db = new dbConnect();
-		ResultSet p1 = db.getStatement().executeQuery("SELECT `playerID` FROM `player` WHERE `player` = " +
-				player1 + ";");
+	public static void teamSubmit() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+		dbConnect db = new dbConnect();
+		db.dbConnection();
 		
-		ResultSet p2 = db.getStatement().executeQuery("SELECT `playerID` FROM `player` WHERE `player` = " +
-				player2 + ";");
+		team newTeam = new team(){};
+		newTeam.setTeamName(txtTName.getText());
+		newTeam.setPlayer1(Integer.parseInt(txtP1.getText()));
+		newTeam.setPlayer2(Integer.parseInt(txtP2.getText()));
+		newTeam.setPlayer3(Integer.parseInt(txtP3.getText()));
+		newTeam.setPlayer4(Integer.parseInt(txtP4.getText()));
+		System.out.println("here " + newTeam.getPlayer1());
+		ResultSet p1 = db.getStatement().executeQuery("SELECT `playerID` FROM `player` WHERE `playerID` = " +
+				newTeam.getPlayer1() + ";");
+		boolean rSet1 = p1.next();
 		
-		ResultSet p3 = db.getStatement().executeQuery("SELECT `playerID` FROM `player` WHERE `player` = " +
-				player3 + ";");
+		ResultSet p2 = db.getStatement().executeQuery("SELECT `playerID` FROM `player` WHERE `playerID` = " +
+				newTeam.getPlayer2() + ";");
+		boolean rSet2 = p2.next();
 		
-		ResultSet p4 = db.getStatement().executeQuery("SELECT `playerID` WHERE `player` = " +
-				player4 + ";");
+		ResultSet p3 = db.getStatement().executeQuery("SELECT `playerID` FROM `player` WHERE `playerID` = " +
+				newTeam.getPlayer3() + ";");
+		boolean rSet3 = p3.next();
 		
-		if ((p1.next() && p2.next() && p3.next() && p4.next() == true) && teamName != ""){
+		ResultSet p4 = db.getStatement().executeQuery("SELECT `playerID` FROM `player` WHERE `playerID` = " +
+				newTeam.getPlayer4() + ";");
+		boolean rSet4 = p4.next();
+		
+		if ((rSet1 && rSet2 && rSet3 && rSet4 == true) && newTeam.getTeamName() != ""){
 			String query = "INSERT INTO `team`(`teamName`, `player1`, `player2`, `player3`, `player4`) VALUES ('" +
-					teamName + "', " + player1 + ", " + player2 + ", " + player3 + ", " + player4 + ");";
+					newTeam.getTeamName() + "', " + newTeam.getPlayer1() + ", " + newTeam.getPlayer2() + ", " +
+					newTeam.getPlayer3() + ", " + newTeam.getPlayer4() + ");";
 			db.getStatement().executeUpdate(query);
-		}else if (teamName == ""){
+		}else if (newTeam.getTeamName() == ""){
 			JOptionPane.showMessageDialog(frame, "You must enter a team name!");
 		}else if(p1.next() == false){
-			JOptionPane.showMessageDialog(frame, "Player ID " + player1 +" doesn't exist!");
+			JOptionPane.showMessageDialog(frame, "Player ID " + newTeam.getPlayer1() +" doesn't exist!");
 		}else if(p2.next() == false){
-			JOptionPane.showMessageDialog(frame, "Player ID " + player2 +" doesn't exist!");
+			JOptionPane.showMessageDialog(frame, "Player ID " + newTeam.getPlayer2() +" doesn't exist!");
 		}else if(p3.next() == false){
-			JOptionPane.showMessageDialog(frame, "Player ID " + player3 +" doesn't exist!");
+			JOptionPane.showMessageDialog(frame, "Player ID " + newTeam.getPlayer3() +" doesn't exist!");
 		}else if(p4.next() == false){
-			JOptionPane.showMessageDialog(frame, "Player ID " + player4 +" doesn't exist!");
+			JOptionPane.showMessageDialog(frame, "Player ID " + newTeam.getPlayer4() +" doesn't exist!");
 		}
 		
 	}
 	
-	public static void playerSubmit() throws SQLException{
-		String query = "INSERT INTO `player`(`FName`, `LName`) VALUES ('" + fName +
-				"', '" + lName + "');";
+	public static void playerSubmit() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+		dbConnect db = new dbConnect();
+		db.dbConnection();
+		String query = "INSERT INTO `player`(`FName`, `LName`) VALUES ('" + newPlayer.getFName() +
+				"', '" + newPlayer.getLName() + "');";
 		db.getStatement().executeUpdate(query);
 	}
 	

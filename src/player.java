@@ -11,7 +11,7 @@ public abstract class player {
 		
 	}
 	
-	public abstract void handicap();
+//	public abstract void handicap();
 
 	public int getPlayerID(){
 //		System.out.println(playerID);

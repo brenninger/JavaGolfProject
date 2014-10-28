@@ -25,13 +25,13 @@ public class data {
 
 //	class pData{
 		public void showPlayerData() {
-			player curPlayer = new player(){
+			player curPlayer = new player(){};
 
-				@Override
-				public void handicap() {
-					// TODO Auto-generated method stub
-					
-				}};
+//				@Override
+//				public void handicap() {
+//					// TODO Auto-generated method stub
+//					
+//				}};
 
 			String[] playerColumnNames = { "Player ID", "First Name",
 					"Last Name", "Handicap" };
@@ -90,13 +90,13 @@ public class data {
 //	}
 
 		public void showTeamData() {
-			team curTeam = new team(){
+			team curTeam = new team(){};
 
-				@Override
-				public void tRank() {
-					// TODO Auto-generated method stub
-					
-				}};
+//				@Override
+//				public void tRank() {
+//					// TODO Auto-generated method stub
+//					
+//				}};
 			String[] teamColumnNames = { "Team Name", "Player 1", "Player 2",
 					"Player 3", "Player 4", "Team Rank" };
 			JTable table = new JTable();
