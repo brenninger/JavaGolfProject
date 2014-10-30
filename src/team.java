@@ -1,5 +1,5 @@
 
-public abstract class team {
+public class team {
 	int teamID;
 	String teamName;
 	int player1;
@@ -14,65 +14,60 @@ public abstract class team {
 	
 //	public abstract void tRank();
 
-	public int getTeamID(){
+	public int getTeamID() {
 		return teamID;
 	}
-	
-	void setTeamID(int newTeamID){
-		teamID = newTeamID;
+
+	public void setTeamID(int teamID) {
+		this.teamID = teamID;
 	}
-	
-	public String getTeamName(){
+
+	public String getTeamName() {
 		return teamName;
 	}
-	
-	void setTeamName(String newTeamName){
-		teamName = newTeamName;
+
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
-	
-	public int getPlayer1(){
+
+	public int getPlayer1() {
 		return player1;
 	}
-	
-	void setPlayer1(int newPlayer1){
-		player1 = newPlayer1;
+
+	public void setPlayer1(int player1) {
+		this.player1 = player1;
 	}
-	
-	public int getPlayer2(){
+
+	public int getPlayer2() {
 		return player2;
 	}
-	
-	void setPlayer2(int newPlayer2){
-		player2 = newPlayer2;
+
+	public void setPlayer2(int player2) {
+		this.player2 = player2;
 	}
-	
-	public int getPlayer3(){
+
+	public int getPlayer3() {
 		return player3;
 	}
-	
-	void setPlayer3(int newPlayer3){
-		player3 = newPlayer3;
+
+	public void setPlayer3(int player3) {
+		this.player3 = player3;
 	}
-	
-	public int getPlayer4(){
+
+	public int getPlayer4() {
 		return player4;
 	}
-	
-	void setPlayer4(int newPlayer4){
-		player4 = newPlayer4;
+
+	public void setPlayer4(int player4) {
+		this.player4 = player4;
 	}
-	
-	public int getTRank(){
+
+	public int gettRank() {
 		return tRank;
 	}
-	
-	void setRank(int newTRank){
-		tRank = newTRank;
-	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+	public void settRank(int tRank) {
+		this.tRank = tRank;
 	}
 
 }

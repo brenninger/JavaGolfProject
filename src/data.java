@@ -131,9 +131,9 @@ public class data {
 					curTeam.setPlayer2(Integer.parseInt(rset.getString("player2")));
 					curTeam.setPlayer3(Integer.parseInt(rset.getString("player3")));
 					curTeam.setPlayer4(Integer.parseInt(rset.getString("player4")));
-					curTeam.setRank(Integer.parseInt(rset.getString("teamRank")));
+					curTeam.settRank(Integer.parseInt(rset.getString("teamRank")));
 					model.addRow(new Object[] { curTeam.getTeamName(), curTeam.getPlayer1(), curTeam.getPlayer2(),
-							curTeam.getPlayer3(), curTeam.getPlayer4(), curTeam.getTRank()});
+							curTeam.getPlayer3(), curTeam.getPlayer4(), curTeam.gettRank()});
 				}
 			}  catch (ClassNotFoundException | InstantiationException
 					| IllegalAccessException | SQLException e) {

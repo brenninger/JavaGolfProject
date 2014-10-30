@@ -1,4 +1,4 @@
-public abstract class player {
+public class player {
 	int playerID;
 	String FName;
 	String LName;
@@ -13,51 +13,46 @@ public abstract class player {
 	
 //	public abstract void handicap();
 
-	public int getPlayerID(){
-//		System.out.println(playerID);
+	
+	
+	public int getPlayerID() {
 		return playerID;
 	}
-	
-	void setPlayerID(int newplayerID){
-		playerID = newplayerID;
-		System.out.println(playerID);
+
+	public void setPlayerID(int playerID) {
+		this.playerID = playerID;
 	}
-	
-	public String getFName(){
+
+	public String getFName() {
 		return FName;
 	}
-	
-	void setFName(String newFName){
-		FName = newFName;
+
+	public void setFName(String fName) {
+		FName = fName;
 	}
-	
-	public String getLName(){
+
+	public String getLName() {
 		return LName;
 	}
-	
-	void setLName(String newLName){
-		LName = newLName;
+
+	public void setLName(String lName) {
+		LName = lName;
 	}
-	
-	public int getRank(){
+
+	public int getpRank() {
 		return pRank;
 	}
-	
-	void setRank(int newPRank){
-		pRank = newPRank;
+
+	public void setpRank(int pRank) {
+		this.pRank = pRank;
 	}
-	
-	public int getHandicap(){
+
+	public int getHandicap() {
 		return handicap;
 	}
-	
-	void setHandicap(int newHandicap){
-		handicap = newHandicap;
-	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+	public void setHandicap(int handicap) {
+		this.handicap = handicap;
 	}
 
 }

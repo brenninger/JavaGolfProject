@@ -20,7 +20,7 @@ import java.sql.SQLException;
 //import java.sql.Statement;
 
 
-public class enterScore {
+public class enterScore extends buttons{
 
 	JFrame frmGolfScore;
 	private JTextField txtID;
@@ -100,17 +100,20 @@ public class enterScore {
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				playerID = Integer.parseInt(txtID.getText());
-				strokes = Integer.parseInt(txtStrokes.getText());
-				courseRate = Double.parseDouble(txtRate.getText());
-				slope = Integer.parseInt(txtSlope.getText());
-				insert();
+				submit();
+				
 			}
 		});
 		btnSubmit.setBounds(10, 153, 89, 23);
 		frmGolfScore.getContentPane().add(btnSubmit);
 		
 		btnClear = new JButton("Clear");
+		btnClear.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				clear();
+			}
+		});
 		btnClear.setBounds(114, 153, 89, 23);
 		frmGolfScore.getContentPane().add(btnClear);
 		
@@ -118,9 +121,8 @@ public class enterScore {
 		btnClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-//				System.exit(0);
-//				frmGolfScore.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				frmGolfScore.setVisible(false);
+				setFrame(frmGolfScore);
+				closeFrame();
 			}
 		});
 		btnClose.setBounds(64, 187, 89, 23);
@@ -165,4 +167,29 @@ public class enterScore {
 		
 		
 	}
+
+	@Override
+	public void submit() {
+		playerID = Integer.parseInt(txtID.getText());
+		strokes = Integer.parseInt(txtStrokes.getText());
+		courseRate = Double.parseDouble(txtRate.getText());
+		slope = Integer.parseInt(txtSlope.getText());
+		insert();
+		
+	}
+
+	@Override
+	public void clear() {
+		txtID.setText("");
+		txtStrokes.setText("");
+		txtRate.setText("");
+		txtSlope.setText("");
+		
+	}
+	
+	//no second clear or submit
+	@Override
+	public void clear2() {}
+	@Override
+	public void submit2() {}
 }
