@@ -7,7 +7,7 @@ import java.sql.Connection;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class menu{
+public class Menu{
 
 	private JFrame frmGolfMain;
 	static Connection con = null;
@@ -17,7 +17,7 @@ public class menu{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					menu window = new menu();
+					Menu window = new Menu();
 					window.frmGolfMain.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +27,7 @@ public class menu{
 	}
 
 	/**Create the application.*/
-	public menu() {
+	public Menu() {
 		initialize();
 	}
 
@@ -35,18 +35,18 @@ public class menu{
 	private void initialize() {
 		frmGolfMain = new JFrame();
 		frmGolfMain.setTitle("Golf - Main Menu");
-		frmGolfMain.setBounds(100, 100, 343, 118);
+		frmGolfMain.setBounds(100, 100, 264, 153);
 		frmGolfMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGolfMain.getContentPane().setLayout(null);
 
-		JButton btnCreate = new JButton("Create Team / Player");
+		JButton btnCreateTeam = new JButton("Create Team");
 
-		btnCreate.setBounds(26, 11, 161, 23);
-		frmGolfMain.getContentPane().add(btnCreate);
-		btnCreate.addActionListener(new ActionListener() {
+		btnCreateTeam.setBounds(10, 75, 117, 23);
+		frmGolfMain.getContentPane().add(btnCreateTeam);
+		btnCreateTeam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Create_GUI create = new Create_GUI();
-				create.frmGolfCreate.setVisible(true);
+				CreateTeam createTeam = new CreateTeam();
+				createTeam.frmTeam.setVisible(true);
 			}
 		});
 
@@ -55,31 +55,31 @@ public class menu{
 		btnPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent displayPlayer) {
 //				showPlayerData();
-				data d = new data();
+				Data d = new Data();
 				d.showPlayerData();
 			}
 		});
-		btnPlayer.setBounds(10, 45, 100, 23);
+		btnPlayer.setBounds(137, 11, 100, 23);
 		frmGolfMain.getContentPane().add(btnPlayer);
 
 		JButton btnTeam = new JButton("Team Data");
 		btnTeam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				data d = new data();
+				Data d = new Data();
 				d.showTeamData();
 			}
 		});
-		btnTeam.setBounds(120, 45, 95, 23);
+		btnTeam.setBounds(137, 45, 100, 23);
 		frmGolfMain.getContentPane().add(btnTeam);
 
 		JButton btnEnter = new JButton("Enter Score");
 		btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				enterScore score = new enterScore();
+				EnterScore score = new EnterScore();
 				score.frmGolfScore.setVisible(true);
 			}
 		});
-		btnEnter.setBounds(194, 11, 108, 23);
+		btnEnter.setBounds(10, 11, 117, 23);
 		frmGolfMain.getContentPane().add(btnEnter);
 
 		JButton btnClose = new JButton("Close");
@@ -91,8 +91,19 @@ public class menu{
 				
 			}
 		});
-		btnClose.setBounds(225, 45, 89, 23);
+		btnClose.setBounds(137, 75, 100, 23);
 		frmGolfMain.getContentPane().add(btnClose);
+		
+		JButton btnCreatePlayer = new JButton("Create Player");
+		btnCreatePlayer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				CreatePlayer createPlayer = new CreatePlayer();
+				createPlayer.frmPlayer.setVisible(true);
+			}
+		});
+		btnCreatePlayer.setBounds(10, 45, 117, 23);
+		frmGolfMain.getContentPane().add(btnCreatePlayer);
 	}
 	
 }

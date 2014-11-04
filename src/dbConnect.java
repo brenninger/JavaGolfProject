@@ -3,10 +3,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class dbConnect {
+public class DBConnect {
 	Connection con = null;
 	Statement statement;
-	public dbConnect() {
+	public DBConnect() {
 		// TODO Auto-generated constructor stub
 	}
 

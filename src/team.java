@@ -1,5 +1,5 @@
 
-public class team {
+public class Team {
 	int teamID;
 	String teamName;
 	int player1;
@@ -8,7 +8,7 @@ public class team {
 	int player4;
 	int tRank;
 	
-	public team() {
+	public Team() {
 		// TODO Auto-generated constructor stub
 	}
 	

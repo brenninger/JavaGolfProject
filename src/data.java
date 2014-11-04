@@ -13,11 +13,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class data {
+public class Data {
 
 	Connection con = null;
 //	Statement statement;
-	dbConnect connect = new dbConnect();
+	DBConnect connect = new DBConnect();
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -25,7 +25,7 @@ public class data {
 
 //	class pData{
 		public void showPlayerData() {
-			player curPlayer = new player(){};
+			Player curPlayer = new Player(){};
 
 //				@Override
 //				public void handicap() {
@@ -90,7 +90,7 @@ public class data {
 //	}
 
 		public void showTeamData() {
-			team curTeam = new team(){};
+			Team curTeam = new Team(){};
 
 //				@Override
 //				public void tRank() {

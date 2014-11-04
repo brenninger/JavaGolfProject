@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -12,24 +11,21 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class Create_GUI extends buttons {
+public class CreateTeam extends Buttons {
 
-	JFrame frmGolfCreate;
+	JFrame frmTeam;
 	private static JTextField txtTName;
-	private JTextField txtFName;
-	private JTextField txtLName;
 	private static JTextField txtP2;
 	private static JTextField txtP1;
 	private static JTextField txtP3;
 	private static JTextField txtP4;
 	// Connection con = null;
 	static Component frame = null;
-	static player newPlayer = new player();
-	static team newTeam = new team();
+	static Player newPlayer = new Player();
+	static Team newTeam = new Team();
 
 	/**
 	 * Launch the application.
@@ -38,8 +34,8 @@ public class Create_GUI extends buttons {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Create_GUI window = new Create_GUI();
-					window.frmGolfCreate.setVisible(true);
+					CreateTeam window = new CreateTeam();
+					window.frmTeam.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,62 +46,56 @@ public class Create_GUI extends buttons {
 	/**
 	 * Create the application.
 	 */
-	public Create_GUI() {
+	public CreateTeam() {
 		initialize();
 	}
 
 	/** Initialize the contents of the frame. */
 	private void initialize() {
 		// Create team / player GUI
-		frmGolfCreate = new JFrame();
-		frmGolfCreate.setTitle("Golf - Create Team / Player");
-		frmGolfCreate.setBounds(100, 100, 385, 379);
-		frmGolfCreate.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmGolfCreate.getContentPane().setLayout(null);
+		frmTeam = new JFrame();
+		frmTeam.setTitle("Golf - Create Team");
+		frmTeam.setBounds(100, 100, 385, 234);
+		frmTeam.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmTeam.getContentPane().setLayout(null);
 
 		JLabel Team = new JLabel("Create Team");
 		Team.setHorizontalAlignment(SwingConstants.CENTER);
 		Team.setFont(new Font("Tahoma", Font.BOLD, 18));
 		Team.setBounds(120, 11, 129, 35);
-		frmGolfCreate.getContentPane().add(Team);
-
-		JLabel lblNewLabel = new JLabel("Create Player");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel.setBounds(118, 191, 132, 35);
-		frmGolfCreate.getContentPane().add(lblNewLabel);
+		frmTeam.getContentPane().add(Team);
 
 		JLabel lblTeamName = new JLabel("Team Name:");
 		lblTeamName.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTeamName.setBounds(12, 77, 72, 23);
-		frmGolfCreate.getContentPane().add(lblTeamName);
+		lblTeamName.setBounds(158, 71, 72, 23);
+		frmTeam.getContentPane().add(lblTeamName);
 
-		JLabel lblNewLabel_1 = new JLabel("Player Numbers");
+		JLabel lblNewLabel_1 = new JLabel("Player ID");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(238, 50, 107, 29);
-		frmGolfCreate.getContentPane().add(lblNewLabel_1);
+		lblNewLabel_1.setBounds(25, 57, 107, 29);
+		frmTeam.getContentPane().add(lblNewLabel_1);
 
 		JLabel lblPlayer = new JLabel("Player 1:");
-		lblPlayer.setBounds(238, 77, 50, 23);
-		frmGolfCreate.getContentPane().add(lblPlayer);
+		lblPlayer.setBounds(25, 84, 50, 23);
+		frmTeam.getContentPane().add(lblPlayer);
 
 		JLabel lblPlayer_1 = new JLabel("Player 2:");
-		lblPlayer_1.setBounds(238, 101, 50, 23);
-		frmGolfCreate.getContentPane().add(lblPlayer_1);
+		lblPlayer_1.setBounds(25, 108, 50, 23);
+		frmTeam.getContentPane().add(lblPlayer_1);
 
 		JLabel lblPlayer_2 = new JLabel("Player 3:");
-		lblPlayer_2.setBounds(238, 127, 50, 23);
-		frmGolfCreate.getContentPane().add(lblPlayer_2);
+		lblPlayer_2.setBounds(25, 134, 50, 23);
+		frmTeam.getContentPane().add(lblPlayer_2);
 
 		JLabel lblPlayer_3 = new JLabel("Player 4:");
-		lblPlayer_3.setBounds(238, 151, 50, 23);
-		frmGolfCreate.getContentPane().add(lblPlayer_3);
+		lblPlayer_3.setBounds(25, 158, 50, 23);
+		frmTeam.getContentPane().add(lblPlayer_3);
 
 		// team name text field
 		txtTName = new JTextField();
-		txtTName.setBounds(92, 79, 121, 20);
-		frmGolfCreate.getContentPane().add(txtTName);
+		txtTName.setBounds(238, 73, 121, 20);
+		frmTeam.getContentPane().add(txtTName);
 		txtTName.setColumns(10);
 
 		// insert the team into the database
@@ -117,8 +107,8 @@ public class Create_GUI extends buttons {
 
 			}
 		});
-		teamSubmit.setBounds(23, 127, 89, 23);
-		frmGolfCreate.getContentPane().add(teamSubmit);
+		teamSubmit.setBounds(168, 111, 89, 23);
+		frmTeam.getContentPane().add(teamSubmit);
 
 		// clear the team text fields
 		JButton teamClear = new JButton("Clear");
@@ -128,100 +118,51 @@ public class Create_GUI extends buttons {
 				clear();
 			}
 		});
-		teamClear.setBounds(122, 127, 89, 23);
-		frmGolfCreate.getContentPane().add(teamClear);
+		teamClear.setBounds(268, 111, 89, 23);
+		frmTeam.getContentPane().add(teamClear);
 
-		JLabel lblFirstName = new JLabel("First Name:");
-		lblFirstName.setBounds(36, 248, 76, 23);
-		frmGolfCreate.getContentPane().add(lblFirstName);
-
-		// player first name text field
-		txtFName = new JTextField();
-		txtFName.setBounds(103, 249, 136, 20);
-		frmGolfCreate.getContentPane().add(txtFName);
-		txtFName.setColumns(10);
-
-		JLabel lblLastName = new JLabel("Last Name:");
-		lblLastName.setBounds(36, 280, 76, 21);
-		frmGolfCreate.getContentPane().add(lblLastName);
-
-		// player last name text field
-		txtLName = new JTextField();
-		txtLName.setBounds(103, 280, 136, 20);
-		frmGolfCreate.getContentPane().add(txtLName);
-		txtLName.setColumns(10);
-
-		JSeparator separator = new JSeparator();
-		separator.setForeground(Color.BLACK);
-		separator.setBackground(Color.BLACK);
-		separator.setBounds(12, 185, 348, 2);
-		frmGolfCreate.getContentPane().add(separator);
 
 		// player1 text field
 		txtP1 = new JTextField();
-		txtP1.setBounds(295, 78, 50, 20);
-		frmGolfCreate.getContentPane().add(txtP1);
+		txtP1.setBounds(82, 85, 50, 20);
+		frmTeam.getContentPane().add(txtP1);
 		txtP1.setColumns(10);
 
 		// player2 text field
 		txtP2 = new JTextField();
-		txtP2.setBounds(295, 102, 50, 20);
-		frmGolfCreate.getContentPane().add(txtP2);
+		txtP2.setBounds(82, 109, 50, 20);
+		frmTeam.getContentPane().add(txtP2);
 		txtP2.setColumns(10);
 
 		// player3 text field
 		txtP3 = new JTextField();
-		txtP3.setBounds(295, 128, 50, 20);
-		frmGolfCreate.getContentPane().add(txtP3);
+		txtP3.setBounds(82, 135, 50, 20);
+		frmTeam.getContentPane().add(txtP3);
 		txtP3.setColumns(10);
 
 		// player4 text field
 		txtP4 = new JTextField();
-		txtP4.setBounds(295, 152, 50, 20);
-		frmGolfCreate.getContentPane().add(txtP4);
+		txtP4.setBounds(82, 159, 50, 20);
+		frmTeam.getContentPane().add(txtP4);
 		txtP4.setColumns(10);
-
-		// clear the player text fields
-		JButton playerClear = new JButton("Clear");
-		playerClear.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				clear2();
-
-			}
-		});
-		playerClear.setBounds(249, 260, 89, 23);
-		frmGolfCreate.getContentPane().add(playerClear);
-
-		// insert the player into the database
-		JButton playerSubmit = new JButton("Submit");
-		playerSubmit.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				submit2();
-
-			}
-		});
-		playerSubmit.setBounds(249, 227, 89, 23);
-		frmGolfCreate.getContentPane().add(playerSubmit);
 
 		JButton btnClose = new JButton("Close");
 		btnClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setFrame(frmGolfCreate);
+				setFrame(frmTeam);
 				closeFrame();
 			}
 		});
-		btnClose.setBounds(249, 293, 89, 23);
-		frmGolfCreate.getContentPane().add(btnClose);
+		btnClose.setBounds(221, 145, 89, 23);
+		frmTeam.getContentPane().add(btnClose);
 
 	}
 
 	public static void teamSubmit() throws SQLException,
 			ClassNotFoundException, InstantiationException,
 			IllegalAccessException {
-		dbConnect db = new dbConnect();
+		DBConnect db = new DBConnect();
 		db.dbConnection();
 
 		System.out.println("here " + newTeam.getPlayer1());
@@ -275,15 +216,6 @@ public class Create_GUI extends buttons {
 
 	}
 
-	public static void playerSubmit() throws SQLException,
-			ClassNotFoundException, InstantiationException,
-			IllegalAccessException {
-		dbConnect db = new dbConnect();
-		db.dbConnection();
-		String query = "INSERT INTO `player`(`FName`, `LName`) VALUES ('"
-				+ newPlayer.getFName() + "', '" + newPlayer.getLName() + "');";
-		db.getStatement().executeUpdate(query);
-	}
 
 	@Override
 	public void submit() {
@@ -312,26 +244,5 @@ public class Create_GUI extends buttons {
 		txtP4.setText("");
 	}
 
-	@Override
-	public void clear2() {
-		// TODO Auto-generated method stub
-		txtFName.setText("");
-		txtLName.setText("");
-	}
-
-	@Override
-	public void submit2() {
-		// TODO Auto-generated method stub
-		newPlayer.setFName(txtFName.getText());
-		newPlayer.setLName(txtLName.getText());
-
-		try {
-			playerSubmit();
-		} catch (SQLException | ClassNotFoundException
-				| InstantiationException | IllegalAccessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}
 
 }

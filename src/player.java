@@ -1,4 +1,4 @@
-public class player {
+public class Player {
 	int playerID;
 	String FName;
 	String LName;
@@ -6,7 +6,7 @@ public class player {
 	int handicap;
 //	String[] p;
 	
-	public player() {
+	public Player() {
 		// TODO Auto-generated constructor stub
 		
 	}

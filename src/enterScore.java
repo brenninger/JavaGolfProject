@@ -20,7 +20,7 @@ import java.sql.SQLException;
 //import java.sql.Statement;
 
 
-public class enterScore extends buttons{
+public class EnterScore extends Buttons{
 
 	JFrame frmGolfScore;
 	private JTextField txtID;
@@ -43,7 +43,7 @@ public class enterScore extends buttons{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					enterScore window = new enterScore();
+					EnterScore window = new EnterScore();
 					window.frmGolfScore.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +53,7 @@ public class enterScore extends buttons{
 	}
 
 	/**Create the application.*/
-	public enterScore() {
+	public EnterScore() {
 		initialize();
 	}
 
@@ -143,8 +143,15 @@ public class enterScore extends buttons{
 		txtSlope.setColumns(10);
 	}
 	
-	public void insert(){
-		dbConnect db = new dbConnect();
+
+	@Override
+	public void submit() {
+		playerID = Integer.parseInt(txtID.getText());
+		strokes = Integer.parseInt(txtStrokes.getText());
+		courseRate = Double.parseDouble(txtRate.getText());
+		slope = Integer.parseInt(txtSlope.getText());
+		
+		DBConnect db = new DBConnect();
 		try {
 			db.dbConnection();
 			ResultSet query = db.getStatement().executeQuery("SELECT `playerID` FROM `player` WHERE `playerID`=" + playerID + ";");
@@ -165,17 +172,6 @@ public class enterScore extends buttons{
 			e.printStackTrace();
 		}
 		
-		
-	}
-
-	@Override
-	public void submit() {
-		playerID = Integer.parseInt(txtID.getText());
-		strokes = Integer.parseInt(txtStrokes.getText());
-		courseRate = Double.parseDouble(txtRate.getText());
-		slope = Integer.parseInt(txtSlope.getText());
-		insert();
-		
 	}
 
 	@Override
@@ -187,9 +183,4 @@ public class enterScore extends buttons{
 		
 	}
 	
-	//no second clear or submit
-	@Override
-	public void clear2() {}
-	@Override
-	public void submit2() {}
 }

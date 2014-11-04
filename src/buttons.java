@@ -1,10 +1,10 @@
 import javax.swing.JFrame;
 
 
-public abstract class buttons {
+public abstract class Buttons {
 
 	private JFrame frame;
-	public buttons() {
+	public Buttons() {
 		
 	}
 	
@@ -24,7 +24,5 @@ public abstract class buttons {
 		System.exit(0);
 	}
 	public abstract void submit();
-	public abstract void submit2();
 	public abstract void clear();
-	public abstract void clear2();
 }
