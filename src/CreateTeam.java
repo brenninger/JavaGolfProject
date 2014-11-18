@@ -25,7 +25,7 @@ public class CreateTeam extends Buttons {
 	// Connection con = null;
 	static Component frame = null;
 	static Player newPlayer = new Player();
-	static Team newTeam = new Team();
+	static Team newTeam;// = new Team();
 
 	/**
 	 * Launch the application.
@@ -213,18 +213,21 @@ public class CreateTeam extends Buttons {
 			JOptionPane.showMessageDialog(frame,
 					"Player ID " + newTeam.getPlayer4() + " doesn't exist!");
 		}
-
+		
 	}
 
 
 	@Override
 	public void submit() {
 		// TODO Auto-generated method stub
-		newTeam.setTeamName(txtTName.getText());
-		newTeam.setPlayer1(Integer.parseInt(txtP1.getText()));
-		newTeam.setPlayer2(Integer.parseInt(txtP2.getText()));
-		newTeam.setPlayer3(Integer.parseInt(txtP3.getText()));
-		newTeam.setPlayer4(Integer.parseInt(txtP4.getText()));
+//		newTeam.setTeamName(txtTName.getText());
+//		newTeam.setPlayer1(Integer.parseInt(txtP1.getText()));
+//		newTeam.setPlayer2(Integer.parseInt(txtP2.getText()));
+//		newTeam.setPlayer3(Integer.parseInt(txtP3.getText()));
+//		newTeam.setPlayer4(Integer.parseInt(txtP4.getText()));
+		newTeam = new Team(txtTName.getText(), Integer.parseInt(txtP1.getText()), Integer.parseInt(txtP2.getText()),
+				Integer.parseInt(txtP3.getText()), Integer.parseInt(txtP4.getText()));
+		
 		try {
 			teamSubmit();
 		} catch (ClassNotFoundException | InstantiationException

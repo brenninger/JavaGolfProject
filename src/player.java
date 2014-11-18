@@ -4,17 +4,40 @@ public class Player {
 	String LName;
 	int pRank;
 	int handicap;
-//	String[] p;
-	
-	public Player() {
-		// TODO Auto-generated constructor stub
-		
-	}
-	
-//	public abstract void handicap();
 
-	
-	
+	/**
+	 * @param playerID
+	 * @param fName
+	 * @param lName
+	 * @param pRank
+	 * @param handicap
+	 */
+//	public Player(int playerID, String fName, String lName, int pRank,
+//			int handicap) {
+//		super();
+//		this.playerID = playerID;
+//		FName = fName;
+//		LName = lName;
+//		this.pRank = pRank;
+//		this.handicap = handicap;
+//	}
+	public Player(String fName, String lName) {
+		super();
+		FName = fName;
+		LName = lName;
+	}
+
+	// String[] p;
+
+	// public abstract void handicap();
+
+	/**
+ * 
+ */
+	public Player() {
+		super();
+	}
+
 	public int getPlayerID() {
 		return playerID;
 	}

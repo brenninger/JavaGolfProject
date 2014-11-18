@@ -1,4 +1,3 @@
-
 public class Team {
 	int teamID;
 	String teamName;
@@ -7,12 +6,36 @@ public class Team {
 	int player3;
 	int player4;
 	int tRank;
-	
-	public Team() {
-		// TODO Auto-generated constructor stub
+
+	/**
+	 * @param teamID
+	 * @param teamName
+	 * @param player1
+	 * @param player2
+	 * @param player3
+	 * @param player4
+	 * @param tRank
+	 */
+	public Team(String teamName, int player1, int player2,
+			int player3, int player4) {
+		super();
+//		this.teamID = teamID;
+		this.teamName = teamName;
+		this.player1 = player1;
+		this.player2 = player2;
+		this.player3 = player3;
+		this.player4 = player4;
+//		this.tRank = tRank;
 	}
-	
-//	public abstract void tRank();
+
+	/**
+ * 
+ */
+	public Team() {
+		super();
+	}
+
+	// public abstract void tRank();
 
 	public int getTeamID() {
 		return teamID;
@@ -62,12 +85,12 @@ public class Team {
 		this.player4 = player4;
 	}
 
-	public int gettRank() {
-		return tRank;
-	}
-
-	public void settRank(int tRank) {
-		this.tRank = tRank;
-	}
+//	public int gettRank() {
+//		return tRank;
+//	}
+//
+//	public void settRank(int tRank) {
+//		this.tRank = tRank;
+//	}
 
 }

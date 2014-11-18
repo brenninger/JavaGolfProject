@@ -11,6 +11,7 @@ import javax.swing.JButton;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -21,7 +22,7 @@ public class CreatePlayer extends Buttons{
 	private JButton btnSubmit;
 	private JButton btnClear;
 	static Component frame = null;
-	static Player newPlayer = new Player();
+	static Player newPlayer;// = new Player();
 	private JButton btnClose;
 
 	/**Launch the application.*/
@@ -117,17 +118,27 @@ public class CreatePlayer extends Buttons{
 	@Override
 	public void submit() {
 		// TODO Auto-generated method stub
-		newPlayer.setFName(txtFName.getText());
-		newPlayer.setLName(txtLName.getText());
-		System.out.println("|" + newPlayer.getFName() + "|");
+//		newPlayer.setFName(txtFName.getText());//USED
+//		newPlayer.setLName(txtLName.getText());//USED
+		newPlayer = new Player(txtFName.getText(), txtLName.getText());
+//		System.out.println(newPlayer.getFName());
 //		if ((/newPlayer.getFName()!="") && (newPlayer.getLName() != "")){
 			DBConnect db = new DBConnect();
 		
 			String query = "INSERT INTO `player`(`FName`, `LName`) VALUES ('"
 				+ newPlayer.getFName() + "', '" + newPlayer.getLName() + "');";
+			String ID = "SELECT `playerID` FROM `player` WHERE `FName`='" + newPlayer.getFName() + "' && LName='" +
+				newPlayer.getLName() + "';";
 			try {
 				db.dbConnection();
 				db.getStatement().executeUpdate(query);
+				ResultSet rs = db.getStatement().executeQuery(ID);
+				while (rs.next()){//while there is a result
+					newPlayer.setPlayerID(Integer.parseInt(rs.getString("playerID")));
+				}
+				JOptionPane.showMessageDialog(null, "First Name: " + newPlayer.getFName() + "\nLast Name: " +
+				newPlayer.getLName() + "\nPlayer ID: " + newPlayer.getPlayerID());
+				clear();
 			} catch (ClassNotFoundException | InstantiationException
 				| IllegalAccessException | SQLException e) {
 				// TODO Auto-generated catch block
