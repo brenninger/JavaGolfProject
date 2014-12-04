@@ -122,7 +122,8 @@ public class CreatePlayer extends Buttons{
 //		newPlayer.setLName(txtLName.getText());//USED
 		newPlayer = new Player(txtFName.getText(), txtLName.getText());
 //		System.out.println(newPlayer.getFName());
-//		if ((/newPlayer.getFName()!="") && (newPlayer.getLName() != "")){
+//		if (txtFName.getText()!="" && txtLName.getText() != ""){
+		if (!(txtFName.getText().equals("")) && !(txtLName.getText().equals(""))){
 			DBConnect db = new DBConnect();
 		
 			String query = "INSERT INTO `player`(`FName`, `LName`) VALUES ('"
@@ -143,12 +144,23 @@ public class CreatePlayer extends Buttons{
 				| IllegalAccessException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				JOptionPane.showMessageDialog(frame, "An error has occured!",
+					    "ERROR!",
+					    JOptionPane.ERROR_MESSAGE);
 			}
-//		}else if ((newPlayer.getFName()) != ""){
-//			JOptionPane.showMessageDialog(frame, "Must enter the player's first name!");
-//		}else if ((newPlayer.getLName()) != null){
-//			JOptionPane.showMessageDialog(frame, "Must enter the player's last name!");
-//		}
+		}else if (txtFName.getText().equals("") && txtLName.getText().equals("")){
+			JOptionPane.showMessageDialog(frame, "Must enter the player's first and last name!",
+				    "Warning - Enter Name",
+				    JOptionPane.WARNING_MESSAGE);
+		}else if (newPlayer.getFName().equals("")){
+			JOptionPane.showMessageDialog(frame, "Must enter the player's first name!",
+				    "Warning - Enter Name",
+				    JOptionPane.WARNING_MESSAGE);
+		}else if (newPlayer.getLName().equals("")){
+			JOptionPane.showMessageDialog(frame, "Must enter the player's last name!",
+				    "Warning - Enter Name",
+				    JOptionPane.WARNING_MESSAGE);
+		}
 		
 	}
 

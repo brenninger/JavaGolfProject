@@ -1,0 +1,4 @@
+data validation
+handcap calculations
+rank calculations/queries
+value added -graph
