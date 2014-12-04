@@ -24,6 +24,7 @@ public class CreatePlayer extends Buttons{
 	static Component frame = null;
 	static Player newPlayer;// = new Player();
 	private JButton btnClose;
+	validate valid = new validate();
 
 	/**Launch the application.*/
 	public static void main(String[] args) {
@@ -120,10 +121,16 @@ public class CreatePlayer extends Buttons{
 		// TODO Auto-generated method stub
 //		newPlayer.setFName(txtFName.getText());//USED
 //		newPlayer.setLName(txtLName.getText());//USED
+		if(txtFName.getText().trim().isEmpty() || txtLName.getText().trim().isEmpty())
+		{
+			valid.error = true;
+			valid.errors += "You must enter a first and last name. \n";
+			valid.checkErrors();
+			return;
+		}
 		newPlayer = new Player(txtFName.getText(), txtLName.getText());
 //		System.out.println(newPlayer.getFName());
-//		if (txtFName.getText()!="" && txtLName.getText() != ""){
-		if (!(txtFName.getText().equals("")) && !(txtLName.getText().equals(""))){
+//		if ((/newPlayer.getFName()!="") && (newPlayer.getLName() != "")){
 			DBConnect db = new DBConnect();
 		
 			String query = "INSERT INTO `player`(`FName`, `LName`) VALUES ('"
@@ -132,6 +139,16 @@ public class CreatePlayer extends Buttons{
 				newPlayer.getLName() + "';";
 			try {
 				db.dbConnection();
+				ResultSet rs1 = db.getStatement().executeQuery(ID);
+				boolean check = rs1.next();
+				if(check == true)
+				{
+					valid.error = true;
+					valid.errors = "That name is already in the system. \nPlease enter a new name.\n";
+					valid.checkErrors();
+					clear();
+					return;
+				}
 				db.getStatement().executeUpdate(query);
 				ResultSet rs = db.getStatement().executeQuery(ID);
 				while (rs.next()){//while there is a result
@@ -144,23 +161,13 @@ public class CreatePlayer extends Buttons{
 				| IllegalAccessException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(frame, "An error has occured!",
-					    "ERROR!",
-					    JOptionPane.ERROR_MESSAGE);
 			}
-		}else if (txtFName.getText().equals("") && txtLName.getText().equals("")){
-			JOptionPane.showMessageDialog(frame, "Must enter the player's first and last name!",
-				    "Warning - Enter Name",
-				    JOptionPane.WARNING_MESSAGE);
-		}else if (newPlayer.getFName().equals("")){
-			JOptionPane.showMessageDialog(frame, "Must enter the player's first name!",
-				    "Warning - Enter Name",
-				    JOptionPane.WARNING_MESSAGE);
-		}else if (newPlayer.getLName().equals("")){
-			JOptionPane.showMessageDialog(frame, "Must enter the player's last name!",
-				    "Warning - Enter Name",
-				    JOptionPane.WARNING_MESSAGE);
-		}
+			
+//		}else if ((newPlayer.getFName()) != ""){
+//			JOptionPane.showMessageDialog(frame, "Must enter the player's first name!");
+//		}else if ((newPlayer.getLName()) != null){
+//			JOptionPane.showMessageDialog(frame, "Must enter the player's last name!");
+//		}
 		
 	}
 
