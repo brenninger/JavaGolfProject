@@ -26,6 +26,7 @@ public class CreateTeam extends Buttons {
 	static Component frame = null;
 	static Player newPlayer = new Player();
 	static Team newTeam;// = new Team();
+	validate valid = new validate();
 
 	/**
 	 * Launch the application.
@@ -163,8 +164,7 @@ public class CreateTeam extends Buttons {
 			ClassNotFoundException, InstantiationException,
 			IllegalAccessException {
 		DBConnect db = new DBConnect();
-		db.dbConnection();
-
+		db.dbConnection();		
 		System.out.println("here " + newTeam.getPlayer1());
 		ResultSet p1 = db.getStatement().executeQuery(
 				"SELECT `playerID` FROM `player` WHERE `playerID` = "
@@ -225,6 +225,14 @@ public class CreateTeam extends Buttons {
 //		newTeam.setPlayer2(Integer.parseInt(txtP2.getText()));
 //		newTeam.setPlayer3(Integer.parseInt(txtP3.getText()));
 //		newTeam.setPlayer4(Integer.parseInt(txtP4.getText()));
+		if(txtTName.getText().trim().isEmpty() || txtP1.getText().trim().isEmpty() || txtP2.getText().trim().isEmpty() ||
+				txtP3.getText().trim().isEmpty() || txtP4.getText().trim().isEmpty())
+		{
+			valid.error = true;
+			valid.errors += "You must enter in a team name and 4 players.";
+			valid.checkErrors();
+			return;
+		}
 		newTeam = new Team(txtTName.getText(), Integer.parseInt(txtP1.getText()), Integer.parseInt(txtP2.getText()),
 				Integer.parseInt(txtP3.getText()), Integer.parseInt(txtP4.getText()));
 		
