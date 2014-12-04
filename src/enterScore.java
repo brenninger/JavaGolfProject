@@ -37,6 +37,7 @@ public class EnterScore extends Buttons{
 	private static int strokes;
 	private static double courseRate;
 	private static int slope;
+	validate valid = new validate();
 
 	/**Launch the application.*/
 	public static void main(String[] args) {
@@ -141,15 +142,68 @@ public class EnterScore extends Buttons{
 		txtSlope.setBounds(106, 125, 65, 20);
 		frmGolfScore.getContentPane().add(txtSlope);
 		txtSlope.setColumns(10);
+		
+		
 	}
 	
 
 	@Override
 	public void submit() {
+		if(txtStrokes.getText().trim().isEmpty() || txtRate.getText().trim().isEmpty() || txtSlope.getText().trim().isEmpty() || txtID.getText().trim().isEmpty())
+		{
+			valid.error = true;
+			valid.errors += "You must enter a value for all areas. \n";
+			valid.checkErrors();
+			return;
+		}
+		
+		if(!valid.isType(txtStrokes.getText(), "int"))
+		{
+			valid.error = true;
+			valid.errors += "Your strokes must be a whole number. \n";
+			valid.checkErrors();
+			return;
+		}
+		
+		if(!valid.isType(txtRate.getText(), "int"))
+		{
+			valid.error = true;
+			valid.errors += "Your course Rating must be a whole number. \n";
+			valid.checkErrors();
+			return;
+		}
+		
+		if(!valid.isType(txtSlope.getText(), "int"))
+		{
+			valid.error = true;
+			valid.errors += "Your slope must be a whole number. \n";
+			valid.checkErrors();
+			System.out.println("AAAA" + txtSlope.getText() + "PPPP");
+			return;
+		}
+		
+		
+		
 		playerID = Integer.parseInt(txtID.getText());
 		strokes = Integer.parseInt(txtStrokes.getText());
 		courseRate = Double.parseDouble(txtRate.getText());
+		
+		if(courseRate < 67 || courseRate > 77)
+		{
+			valid.error = true;
+			valid.errors += "Your slope must be between 67 and 77. \n";
+			valid.checkErrors();
+			return;
+		}
 		slope = Integer.parseInt(txtSlope.getText());
+		
+		if(slope < 55 || slope > 155)
+		{
+			valid.error = true;
+			valid.errors += "Your slope must be between 55 and 155. \n";
+			valid.checkErrors();
+			return;
+		}
 		
 		DBConnect db = new DBConnect();
 		try {
