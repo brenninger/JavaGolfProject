@@ -17,6 +17,8 @@ import java.sql.Connection;
 //import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DecimalFormat;
 //import java.sql.Statement;
 
 
@@ -37,7 +39,11 @@ public class EnterScore extends Buttons{
 	private static int strokes;
 	private static double courseRate;
 	private static int slope;
+	private static double differential;
 	validate valid = new validate();
+	private static float handicap;
+	DecimalFormat df = new DecimalFormat();
+	
 
 	/**Launch the application.*/
 	public static void main(String[] args) {
@@ -191,7 +197,11 @@ public class EnterScore extends Buttons{
 		if(courseRate < 67 || courseRate > 77)
 		{
 			valid.error = true;
+<<<<<<< HEAD
 			valid.errors += "Your Course Rate must be between 67 and 77. \n";
+=======
+			valid.errors += "Your course rating must be between 67 and 77. \n";
+>>>>>>> origin/master
 			valid.checkErrors();
 			return;
 		}
@@ -204,6 +214,9 @@ public class EnterScore extends Buttons{
 			valid.checkErrors();
 			return;
 		}
+		calcHandicap calc = new calcHandicap(strokes, courseRate, slope);
+		System.out.println(calc);
+		
 		
 		DBConnect db = new DBConnect();
 		try {
@@ -216,8 +229,23 @@ public class EnterScore extends Buttons{
 			}else{
 //				System.out.println(query.next());
 //				System.out.println("not empty");
-				String insert = "INSERT into `score` (`playerID`, `strokes`, `courseRate`, `slope`) VALUES(" + playerID + ", " +
-						strokes + ", " + courseRate + ", " + slope + ");";
+				String insert = "INSERT into `score` (`playerID`, `strokes`, `courseRate`, `slope`, `differential`) VALUES(" + playerID + ", " +
+						strokes + ", " + courseRate + ", " + slope + ", " + calc +");";
+				db.getStatement().executeUpdate(insert);
+				
+			}
+			ResultSet query1 = db.getStatement().executeQuery("SELECT AVG(T.`differential`) FROM (select `score`.`differential`, `playerID`, `ID` from `score` where `playerID` = " + 
+			+ playerID +" " + "ORDER BY `score`.`ID` DESC LIMIT 5) as T");
+			if(!query1.next()){
+				System.out.println("Empty1");
+			
+			}else
+			{
+				df.setMaximumFractionDigits(2);
+				System.out.println();
+				handicap = query1.getFloat(1);
+				System.out.println(df.format(handicap));
+				String insert = "UPDATE `player` SET `handicap` = " + handicap + "WHERE `playerID` = " + playerID;
 				db.getStatement().executeUpdate(insert);
 			}
 		} catch (ClassNotFoundException | InstantiationException
@@ -225,6 +253,7 @@ public class EnterScore extends Buttons{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 	}
 
