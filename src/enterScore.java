@@ -37,7 +37,9 @@ public class EnterScore extends Buttons{
 	private static int strokes;
 	private static double courseRate;
 	private static int slope;
+	private static double differential;
 	validate valid = new validate();
+	
 
 	/**Launch the application.*/
 	public static void main(String[] args) {
@@ -191,7 +193,7 @@ public class EnterScore extends Buttons{
 		if(courseRate < 67 || courseRate > 77)
 		{
 			valid.error = true;
-			valid.errors += "Your slope must be between 67 and 77. \n";
+			valid.errors += "Your course rating must be between 67 and 77. \n";
 			valid.checkErrors();
 			return;
 		}
@@ -204,6 +206,9 @@ public class EnterScore extends Buttons{
 			valid.checkErrors();
 			return;
 		}
+		calcHandicap calc = new calcHandicap(strokes, courseRate, slope);
+		System.out.println(calc);
+		
 		
 		DBConnect db = new DBConnect();
 		try {
@@ -216,8 +221,8 @@ public class EnterScore extends Buttons{
 			}else{
 //				System.out.println(query.next());
 //				System.out.println("not empty");
-				String insert = "INSERT into `score` (`playerID`, `strokes`, `courseRate`, `slope`) VALUES(" + playerID + ", " +
-						strokes + ", " + courseRate + ", " + slope + ");";
+				String insert = "INSERT into `score` (`playerID`, `strokes`, `courseRate`, `slope`, `differential`) VALUES(" + playerID + ", " +
+						strokes + ", " + courseRate + ", " + slope + ", " + calc +");";
 				db.getStatement().executeUpdate(insert);
 			}
 		} catch (ClassNotFoundException | InstantiationException
