@@ -191,7 +191,7 @@ public class EnterScore extends Buttons{
 		if(courseRate < 67 || courseRate > 77)
 		{
 			valid.error = true;
-			valid.errors += "Your slope must be between 67 and 77. \n";
+			valid.errors += "Your Course Rate must be between 67 and 77. \n";
 			valid.checkErrors();
 			return;
 		}

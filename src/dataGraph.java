@@ -16,7 +16,7 @@ public class dataGraph extends JPanel {
     final int PAD = 20;
  
     public void countNumberOfScores() {
-    	dbConnect connect = new dbConnect();
+    	DBConnect connect = new DBConnect();
     	try {
 			connect.dbConnection();
 			ResultSet rset = connect.getStatement().executeQuery("SELECT * FROM score");
