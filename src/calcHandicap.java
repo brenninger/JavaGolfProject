@@ -44,7 +44,8 @@ public class calcHandicap {
 	}
 	public String toString()
 	{
-		return "Your differential is " + df.format(differential);
+		return df.format(differential);
 	}
+
 	
 }
