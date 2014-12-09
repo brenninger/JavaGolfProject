@@ -17,6 +17,8 @@ import java.sql.Connection;
 //import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DecimalFormat;
 //import java.sql.Statement;
 
 
@@ -39,6 +41,8 @@ public class EnterScore extends Buttons{
 	private static int slope;
 	private static double differential;
 	validate valid = new validate();
+	private static float handicap;
+	DecimalFormat df = new DecimalFormat();
 	
 
 	/**Launch the application.*/
@@ -224,12 +228,28 @@ public class EnterScore extends Buttons{
 				String insert = "INSERT into `score` (`playerID`, `strokes`, `courseRate`, `slope`, `differential`) VALUES(" + playerID + ", " +
 						strokes + ", " + courseRate + ", " + slope + ", " + calc +");";
 				db.getStatement().executeUpdate(insert);
+				
+			}
+			ResultSet query1 = db.getStatement().executeQuery("SELECT AVG(T.`differential`) FROM (select `score`.`differential`, `playerID`, `ID` from `score` where `playerID` = " + 
+			+ playerID +" " + "ORDER BY `score`.`ID` DESC LIMIT 5) as T");
+			if(!query1.next()){
+				System.out.println("Empty1");
+			
+			}else
+			{
+				df.setMaximumFractionDigits(2);
+				System.out.println();
+				handicap = query1.getFloat(1);
+				System.out.println(df.format(handicap));
+				String insert = "UPDATE `player` SET `handicap` = " + handicap + "WHERE `playerID` = " + playerID;
+				db.getStatement().executeUpdate(insert);
 			}
 		} catch (ClassNotFoundException | InstantiationException
 				| IllegalAccessException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 	}
 
